@@ -1,0 +1,4 @@
+#include <stdio.h>
+
+void leer_arreglo(int arr[]);
+  void sumar_arreglo(int arreglo[]);
