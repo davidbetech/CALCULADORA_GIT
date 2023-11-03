@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 void leer_arreglo(int arr[]);
   int  sumar_arreglo(int arreglo[]);
@@ -9,18 +10,31 @@ void leer_arreglo(int arr[]);
   int factorial(int a);
   double euler(int a);
   int factorial_rec(int a);
+  void eq_cuadr(double a, double b, double c, double *r1, double *r2);
+  void circulo(double radio, double *peri, double *area, double *vol);
   
 int main(void) {
   int a; 
   int b;
+  int c;
+  double a_d;
+  double b_d;
+  double c_d;
   int numeros[10];
   int res;
-  char c; 
+  
+  double res1;
+  double res2;
+  double res3;
+  double *peri;
+  double *area;
+  double *vol;
+  char cha; 
   double res_d;
   
   printf("que operacion quieres hacer\n");
-  scanf("%c", &c);
-  switch(c) {
+  scanf("%c", &cha);
+  switch(cha) {
   
   case '+': {
   printf("dame el primer numero\n");
@@ -90,6 +104,34 @@ int main(void) {
        printf("%lf\n", res_d);
       break;
      }
+     
+     case 'c': { 
+          printf("dame un numero\n");
+          scanf("%lf", &a_d);
+            printf("dame un numero\n");
+          scanf("%lf", &b_d);
+       printf("dame un numero\n");
+          scanf("%lf", &c_d);
+          eq_cuadr(a_d, b_d, c_d, &res1, &res2);
+     printf("tus resultados son %lf y %lf\n", res1, res2);
+     }
+     
+     case 'v': {
+        printf("dame un numero");
+        scanf("%lf", &a_d);
+        peri = &res1;
+        area = &res2;
+        vol = &res3;
+        if ( a_d > 0) {
+        
+           circulo(a_d, &res1,  &res2,  &res3);
+           printf("peri:%lf\n area:%lf\n vol: %lf\n", res1, res2, res3);
+           
+        }
+     
+     
+     }
+     
   }
   
   
@@ -200,3 +242,17 @@ double euler(int a) {
 
 }
 
+void eq_cuadr(double a, double b, double c, double *r1, double *r2) {
+*r1 = (-b + sqrt ( b * b - 4 * a * c)) / ( 2 * a);
+*r2 = (-b + sqrt ( b * b - 4 * a * c)) / ( 2 * a);
+
+}
+
+
+void circulo(double radio, double *peri, double *area, double *vol) {
+
+   *area = radio * radio * 3.14;
+   *peri = 3.14 * 2 * radio;
+   *vol = radio * radio * radio * 1.33 * 3.14; 
+
+}

@@ -1,0 +1,1 @@
+  double euler(int a);
