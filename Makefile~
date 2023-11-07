@@ -1,0 +1,2 @@
+calculadora.out: calculadora.o aritmetica.o constantes.o series.o
+	gcc -o 

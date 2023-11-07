@@ -1,3 +1,4 @@
+#include "calculadora.h"
 double euler(int a) {
   double euler_res = 0;
   int i = 0;
@@ -7,3 +8,4 @@ double euler(int a) {
   euler_res = euler_res + 1 / res_iteracion;
   
   } 
+  }

@@ -1,3 +1,4 @@
+#include "calculadora.h"
 int factorial(int a) {
   int i = 0;
    int res = 1;

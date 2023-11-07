@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
-
+#include "calculadora.h"
+#define SIZE 10;
 void leer_arreglo(int arr[]);
   int  sumar_arreglo(int arreglo[]);
   int suma(int a, int b);
@@ -12,6 +13,7 @@ void leer_arreglo(int arr[]);
   int factorial_rec(int a);
   void eq_cuadr(double a, double b, double c, double *r1, double *r2);
   void circulo(double radio, double *peri, double *area, double *vol);
+  void media(int arr[], double *media, int size, double *mediana, double *moda);
   
 int main(void) {
   int a; 
@@ -20,7 +22,7 @@ int main(void) {
   double a_d;
   double b_d;
   double c_d;
-  int numeros[10];
+  int numeros[SIZE];
   int res;
   
   double res1;
@@ -31,6 +33,10 @@ int main(void) {
   double *vol;
   char cha; 
   double res_d;
+  double *media;
+  double *moda;
+  double *mediana;
+  int size = 10;
   
   printf("que operacion quieres hacer\n");
   scanf("%c", &cha);
@@ -114,6 +120,7 @@ int main(void) {
           scanf("%lf", &c_d);
           eq_cuadr(a_d, b_d, c_d, &res1, &res2);
      printf("tus resultados son %lf y %lf\n", res1, res2);
+     break;
      }
      
      case 'v': {
@@ -128,8 +135,19 @@ int main(void) {
            printf("peri:%lf\n area:%lf\n vol: %lf\n", res1, res2, res3);
            
         }
+        
+            break;
      
+     }
      
+     case 'm': {
+     
+      for (i = 0; i < 10; i++) {
+
+        scanf("%d", &numeros[i]);
+      }
+      
+         break;    
      }
      
   }
@@ -168,79 +186,6 @@ int  sumar_arreglo(int arreglo[]) {
 }
 
 
-int suma(int a, int b) {
-
-    int res;
-    res = a + b;
-    return res;
-
-}
-
-int resta(int a, int b) {
-
-    int res;
-    res = a - b;
-    return res;
-
-}
-
-int multi(int a, int b) {
-
-    int res;
-    res = a * b;
-    return res;
-
-}
-
-double divi(int a, int b) {
-    double a_d;
-    double b_d;
-    double res;
-    a_d = (double) a;
-    b_d = (double) b;
-    res = a_d / b_d;
-    return res;
-
-}
-
-int factorial(int a) {
-  int i = 0;
-   int res = 1;
-   for( i = 1; i <= a; i++) {
-   
-   res = i * res; 
-   
-  
-  }
-    return res;
-
-}
-
-int factorial_rec(int a) {
- int res;
- if(a == 0) {
- return 1;
- }
- else {
-  res = factorial_rec(a - 1);
-  return a * res;
-  }
-  }
-
-
-double euler(int a) {
-  double euler_res = 0;
-  int i = 0;
-  double res_iteracion;
-  for(i = 0; i <= a; i++) {
-  res_iteracion = factorial(i);
-  euler_res = euler_res + 1 / res_iteracion;
-  
-  } 
-
-   return euler_res;
-
-}
 
 void eq_cuadr(double a, double b, double c, double *r1, double *r2) {
 *r1 = (-b + sqrt ( b * b - 4 * a * c)) / ( 2 * a);
@@ -254,5 +199,22 @@ void circulo(double radio, double *peri, double *area, double *vol) {
    *area = radio * radio * 3.14;
    *peri = 3.14 * 2 * radio;
    *vol = radio * radio * radio * 1.33 * 3.14; 
+
+}
+
+
+void media(int numeros[], int size, double *media, double *mediana, double *moda) {
+int i;
+int j = 1;
+    size = strlng(numeros);
+    
+    for( i = 0; i != '\0' || j != '\0'; i++;) {
+        
+     *media = numeros[1] + numeros[j];
+   
+
+    }
+    *media = *media / 11;
+    
 
 }

@@ -1,3 +1,4 @@
+#include "calculadora.h"
 int suma(int a, int b) {
 
     int res;
