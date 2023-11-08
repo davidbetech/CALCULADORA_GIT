@@ -2,6 +2,22 @@
 #include <math.h>
 #include "calculadora.h"
 #define SIZE 10;
+
+typeof struct {
+    char operacion;
+    double resultado_double1;
+    double resultado_double2;
+    double resultado_double3;
+    int resultado_int;
+    int op1;
+    int op2;
+    int op3;
+    double op1d;
+    double op2d;
+    double op3d;
+} OPERACION;
+
+
 void leer_arreglo(int arr[]);
   int  sumar_arreglo(int arreglo[]);
   int suma(int a, int b);
@@ -15,6 +31,7 @@ void leer_arreglo(int arr[]);
   void circulo(double radio, double *peri, double *area, double *vol);
   void media(int arr[], double *media, int size, double *mediana, double *moda);
   
+  
 int main(void) {
   int a; 
   int b;
@@ -24,7 +41,7 @@ int main(void) {
   double c_d;
   int numeros[SIZE];
   int res;
-  
+  OPERACION historial[10];
   double res1;
   double res2;
   double res3;
@@ -37,7 +54,8 @@ int main(void) {
   double *moda;
   double *mediana;
   int size = 10;
-  
+  int contador = 0;
+  while(1) {
   printf("que operacion quieres hacer\n");
   scanf("%c", &cha);
   switch(cha) {
@@ -49,6 +67,10 @@ int main(void) {
   scanf("%d", &b);
   res = suma(a, b);
   printf("%d\n", res);
+  historial[contador].op1 = a;
+   historial[contador].op2 = b;
+  historial[contador].resultado_int = res;
+  
   break;
   
   }
@@ -61,6 +83,11 @@ int main(void) {
    scanf("%d", &b);
    res = resta(a, b);
    printf("%d\n", res);
+
+   historial[contador].op1 = a;
+   historial[contador].op2 = b;
+   historial[contador].resultado_int = res;
+  
    break;
    
   }
@@ -71,7 +98,12 @@ int main(void) {
     printf("dame el segunndo numero\n");
     scanf("%d", &b);
     res = multi(a, b);
-     printf("%d\n", res);
+    printf("%d\n", res);
+    
+    historial[contador].op1 = a;
+    historial[contador].op2 = b;
+    historial[contador].resultado_int = res;
+  
      break;
   
   }
@@ -81,33 +113,47 @@ int main(void) {
      scanf("%d", &a);
      printf("dame el segunndo numero\n");
      scanf("%d", &b);
-      res_d = divi(a, b);
+     res_d = divi(a, b);
      printf("%lf\n", res_d);
+
+     historial[contador].op1 = a;
+     historial[contador].op2 = b;
+     historial[contador].resultado_int = res;
+  
      break;
      }
     
      
      case 'f': {
-       printf("dame un numero\n");
-       scanf("%d", &a);
-      res = factorial(a);
-      printf("%d\n", res);
+         printf("dame un numero\n");
+         scanf("%d", &a);
+         res = factorial(a);
+         printf("%d\n", res);
+       
+         historial[contador].op1 = a;
+         historial[contador].resultado_int = res;
+  
       break;
       
      }
      
      case 'F': {
-     printf("dame un numero\n");
-       scanf("%d", &a);
-      res = factorial_rec(a);
-      printf("%d\n", res);
+         printf("dame un numero\n");
+         scanf("%d", &a);
+         res = factorial_rec(a);
+         printf("%d\n", res);
+     
+         historial[contador].op1 = a;
+         historial[contador].resultado_int = res;
       break;
      }
      case 'e': {
-      printf("dame un numero\n");
-       scanf("%d", &a);
-       res_d = euler(a);
-       printf("%lf\n", res_d);
+         printf("dame un numero\n");
+         scanf("%d", &a);
+         res_d = euler(a);
+         printf("%lf\n", res_d);
+         historial[contador].op1 = a;
+         historial[contador].resultado_double = res_d;
       break;
      }
      
@@ -116,10 +162,17 @@ int main(void) {
           scanf("%lf", &a_d);
             printf("dame un numero\n");
           scanf("%lf", &b_d);
-       printf("dame un numero\n");
+          printf("dame un numero\n");
           scanf("%lf", &c_d);
           eq_cuadr(a_d, b_d, c_d, &res1, &res2);
-     printf("tus resultados son %lf y %lf\n", res1, res2);
+          printf("tus resultados son %lf y %lf\n", res1, res2);
+      
+         historial[contador].op1d = a_d;
+         historial[contador].op2d = b_d;
+         historial[contador].op3d = c_d;
+         historial[contador].resultado_double1 = res1;
+         historial[contador].resultado_double2 = res2;
+     
      break;
      }
      
@@ -136,6 +189,11 @@ int main(void) {
            
         }
         
+         historial[contador].op1d = a_d;
+         historial[contador].resultado_double1 = res1;
+         historial[contador].resultado_double2 = res2; 
+         historial[contador].resultado_double3 = res3; 
+         
             break;
      
      }
@@ -150,6 +208,9 @@ int main(void) {
          break;    
      }
      
+  }
+  historial[contador].operacion = cha;
+  contador++;
   }
   
   
