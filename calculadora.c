@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <math.h>
 #include "calculadora.h"
-#define SIZE 10;
+#define SIZE 10
 
-typeof struct {
+typedef struct {
     char operacion;
     double resultado_double1;
     double resultado_double2;
@@ -29,7 +29,7 @@ void leer_arreglo(int arr[]);
   int factorial_rec(int a);
   void eq_cuadr(double a, double b, double c, double *r1, double *r2);
   void circulo(double radio, double *peri, double *area, double *vol);
-  void media(int arr[], double *media, int size, double *mediana, double *moda);
+  void mmm(int arr[], int size, double *media, double *mediana, double *moda);
   
   
 int main(void) {
@@ -53,14 +53,16 @@ int main(void) {
   double *media;
   double *moda;
   double *mediana;
-  int size = 10;
+  int size = 11;
   int contador = 0;
+  int i;
   while(1) {
   printf("que operacion quieres hacer\n");
   scanf("%c", &cha);
   switch(cha) {
   
   case '+': {
+  
   printf("dame el primer numero\n");
   scanf("%d", &a);
   printf("dame el segunndo numero\n");
@@ -93,6 +95,7 @@ int main(void) {
   }
   
   case '*': {
+  
     printf("dame el primer numero\n");
     scanf("%d", &a);
     printf("dame el segunndo numero\n");
@@ -109,6 +112,7 @@ int main(void) {
   }
   
   case '/': {
+  
      printf("dame el primer numero\n");
      scanf("%d", &a);
      printf("dame el segunndo numero\n");
@@ -125,6 +129,7 @@ int main(void) {
     
      
      case 'f': {
+     
          printf("dame un numero\n");
          scanf("%d", &a);
          res = factorial(a);
@@ -138,6 +143,7 @@ int main(void) {
      }
      
      case 'F': {
+     
          printf("dame un numero\n");
          scanf("%d", &a);
          res = factorial_rec(a);
@@ -148,16 +154,18 @@ int main(void) {
       break;
      }
      case 'e': {
+     
          printf("dame un numero\n");
          scanf("%d", &a);
          res_d = euler(a);
          printf("%lf\n", res_d);
          historial[contador].op1 = a;
-         historial[contador].resultado_double = res_d;
+         historial[contador].resultado_double1 = res_d;
       break;
      }
      
      case 'c': { 
+     
           printf("dame un numero\n");
           scanf("%lf", &a_d);
             printf("dame un numero\n");
@@ -177,6 +185,7 @@ int main(void) {
      }
      
      case 'v': {
+     
         printf("dame un numero");
         scanf("%lf", &a_d);
         peri = &res1;
@@ -200,22 +209,43 @@ int main(void) {
      
      case 'm': {
      
+     
+     
       for (i = 0; i < 10; i++) {
 
         scanf("%d", &numeros[i]);
       }
+      media = &res1;
+      moda = &res2;
+      mediana = &res3;
+      mmm(numeros, size, &res1, &res2, &res3);
       
          break;    
      }
      
   }
-  historial[contador].operacion = cha;
-  contador++;
+  
+     historial[contador].operacion = cha;
+     
+     if (contador == 10){
+     
+     contador -= 10;
+     
+     }
+
+     for(i = 0; i <= contador; i++) {
+     printf("operacion %d;\n tipo: %c\n operandos: %d %d %d \n resultado int: %d\n resultados floats: %lf, %lf, %lf\n", i + 1, historial[i].operacion, historial[i].op1, historial[i].op2,          
+     historial[i].op3, historial[i].resultado_int, historial[i].resultado_double1, historial[i].resultado_double2, historial[i].resultado_double3);
+     }
+     getchar();
+     contador++;
+  
   }
   
   
+  
    //leer_arreglo(numeros);
- //  res = sumar_arreglo(numeros);
+   // res = sumar_arreglo(numeros);
    //printf("%d\n", res);
    
    return 0;
@@ -264,18 +294,19 @@ void circulo(double radio, double *peri, double *area, double *vol) {
 }
 
 
-void media(int numeros[], int size, double *media, double *mediana, double *moda) {
+void mmm(int numeros[], int size, double *media, double *mediana, double *moda) {
 int i;
 int j = 1;
-    size = strlng(numeros);
+
     
-    for( i = 0; i != '\0' || j != '\0'; i++;) {
+    for( i = 0; i != '\0' || j != '\0'; i++) {
         
      *media = numeros[1] + numeros[j];
    
 
     }
-    *media = *media / 11;
+    *media = *media / size;
+    
     
 
 }
